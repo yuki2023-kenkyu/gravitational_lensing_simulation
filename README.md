@@ -14,7 +14,7 @@
 
 ## インストール
 
-必要なライブラリをインストールするために、以下のコマンドを実行してください。
+必要なライブラリをインストールするために、各自の環境で以下のコマンドを実行してください。
 
 ```bash
 pip install numpy opencv-python pillow
@@ -22,7 +22,7 @@ pip install numpy opencv-python pillow
 
 ## モジュールの説明
 
-### `black_hole_effect.py`
+### `gravitational_lensing_effect.py`
 
 このモジュールには、ブラックホールの重力レンズ効果をシミュレートする関数が含まれています。
 
@@ -39,7 +39,7 @@ pip install numpy opencv-python pillow
 
 ## 実行方法
 
-1. `black_hole_effect.py`と`main.py`を同じディレクトリに配置してください。
+1. `gravitational_lensing_effect.py`と`main.py`を同じディレクトリに配置してください。
 2. 以下のコードをコマンドプロンプト内で実行してください。
 ```bash
 python main.py
