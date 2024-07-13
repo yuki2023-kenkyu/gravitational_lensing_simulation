@@ -12,14 +12,6 @@
 - Tkinter (Pythonに標準で含まれています)
 - Pillow (PIL)
 
-## インストール
-
-必要なライブラリをインストールするために、各自の環境で以下のコマンドを実行してください。
-
-```bash
-pip install numpy opencv-python pillow
-```
-
 ## モジュールの説明
 
 ### `gravitational_lensing_effect.py`
