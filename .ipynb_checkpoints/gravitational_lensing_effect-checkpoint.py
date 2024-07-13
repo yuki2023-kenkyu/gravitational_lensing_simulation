@@ -24,6 +24,10 @@ def schwarzschild_lens_effect(frame, Rs=50, center=None):
     r_lensed = r - Rs * np.log(r / Rs)
     r_lensed = np.maximum(r_lensed, 1)  # Avoid negative or zero radius
     
+    # シュバルツシルト半径内を黒く塗りつぶす
+    inside_horizon = r < Rs
+    frame[inside_horizon] = [0, 0, 0]
+    
     # 新しい座標を計算
     # 変形後の距離と元の角度を使って、新しい座標X_lensedとY_lensedを計算します。これにより、各ピクセルがどこに移動するかを決定します。
     X_lensed = r_lensed * np.cos(theta) + center[0]
@@ -51,6 +55,10 @@ def kerr_lens_effect(frame, Rs=50, a=0.5, center=None):
     r = np.maximum(r, 1)  # Avoid divide by zero
     r_lensed = r - Rs * np.log(r / Rs) * (1 - a * np.sin(theta))
     r_lensed = np.maximum(r_lensed, 1)  # Avoid negative or zero radius
+    
+     # シュバルツシルト半径内を黒く塗りつぶす
+    inside_horizon = r < Rs
+    frame[inside_horizon] = [0, 0, 0]
     
     X_lensed = r_lensed * np.cos(theta) + center[0]
     Y_lensed = r_lensed * np.sin(theta) + center[1]
