@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-def schwarzschild_lens_effect(frame, Rs=50, center=None):
+def schwarzschild_lens_effect(frame, Rs=50, center=None, fill_inside_horizon=False):
     h, w, _ = frame.shape
     # 画像の中心を求める
     # centerが指定されていない場合、画像の中心を重心として設定します。wは画像の幅、hは高さです。
@@ -25,8 +25,9 @@ def schwarzschild_lens_effect(frame, Rs=50, center=None):
     r_lensed = np.maximum(r_lensed, 1)  # Avoid negative or zero radius
     
     # シュバルツシルト半径内を黒く塗りつぶす
-    inside_horizon = r < Rs
-    frame[inside_horizon] = [0, 0, 0]
+    if fill_inside_horizon:
+        inside_horizon = r < Rs
+        frame[inside_horizon] = [0, 0, 0]
     
     # 新しい座標を計算
     # 変形後の距離と元の角度を使って、新しい座標X_lensedとY_lensedを計算します。これにより、各ピクセルがどこに移動するかを決定します。
@@ -41,7 +42,7 @@ def schwarzschild_lens_effect(frame, Rs=50, center=None):
     lensed_frame = cv2.remap(frame, map_x, map_y, interpolation=cv2.INTER_LINEAR)
     return lensed_frame
 
-def kerr_lens_effect(frame, Rs=50, a=0.5, center=None):
+def kerr_lens_effect(frame, Rs=50, a=0.5, center=None, fill_inside_horizon=False):
     h, w, _ = frame.shape
     if center is None:
         center = (w // 2, h // 2)
@@ -57,8 +58,9 @@ def kerr_lens_effect(frame, Rs=50, a=0.5, center=None):
     r_lensed = np.maximum(r_lensed, 1)  # Avoid negative or zero radius
     
      # シュバルツシルト半径内を黒く塗りつぶす
-    inside_horizon = r < Rs
-    frame[inside_horizon] = [0, 0, 0]
+    if fill_inside_horizon:
+        inside_horizon = r < Rs
+        frame[inside_horizon] = [0, 0, 0]
     
     X_lensed = r_lensed * np.cos(theta) + center[0]
     Y_lensed = r_lensed * np.sin(theta) + center[1]

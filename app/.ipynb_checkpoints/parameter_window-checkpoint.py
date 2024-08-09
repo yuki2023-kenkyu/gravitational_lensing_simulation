@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Scale, Radiobutton, IntVar, Button
+from tkinter import Scale, Radiobutton, IntVar, Checkbutton, BooleanVar, Button
 
 class ParameterWindow:
     def __init__(self, master, app):
@@ -18,6 +18,10 @@ class ParameterWindow:
 
         Radiobutton(master, text="シュバルツシルトブラックホール", variable=self.bh_type, value=1).pack(anchor=tk.W)
         Radiobutton(master, text="Kerrブラックホール", variable=self.bh_type, value=2).pack(anchor=tk.W)
+
+        self.fill_inside_horizon = BooleanVar()
+        self.fill_inside_horizon.set(False)  # デフォルトは塗りつぶしなし
+        Checkbutton(master, text="シュバルツシルト半径内を塗りつぶす", variable=self.fill_inside_horizon).pack(anchor=tk.W)
 
         self.update_button = tk.Button(master, text="更新", command=self.update_parameters)
         self.update_button.pack()
@@ -61,3 +65,4 @@ class ParameterWindow:
         self.app.a = self.scale_a.get()
         self.app.window_size = self.scale_window_size.get()
         self.app.bh_type = self.bh_type.get()
+        self.app.fill_inside_horizon = self.fill_inside_horizon.get()

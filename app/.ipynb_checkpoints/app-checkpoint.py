@@ -20,6 +20,7 @@ class App:
         self.a = 0.5
         self.window_size = 800  # 初期ウィンドウサイズ
         self.bh_type = 1
+        self.fill_inside_horizon = False
 
         param_window = Toplevel(self.root)
         self.param_win = ParameterWindow(param_window, self)

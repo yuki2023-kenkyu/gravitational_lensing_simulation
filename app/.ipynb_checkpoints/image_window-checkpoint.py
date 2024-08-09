@@ -23,9 +23,9 @@ class ImageWindow:
             return
 
         if self.app.bh_type == 1:
-            lensed_frame = schwarzschild_lens_effect(frame, Rs=self.app.Rs, center=(self.app.lens_x, self.app.lens_y))
+            lensed_frame = schwarzschild_lens_effect(frame, Rs=self.app.Rs, center=(self.app.lens_x, self.app.lens_y), fill_inside_horizon=self.app.fill_inside_horizon)
         else:
-            lensed_frame = kerr_lens_effect(frame, Rs=self.app.Rs, a=self.app.a, center=(self.app.lens_x, self.app.lens_y))
+            lensed_frame = kerr_lens_effect(frame, Rs=self.app.Rs, a=self.app.a, center=(self.app.lens_x, self.app.lens_y), fill_inside_horizon=self.app.fill_inside_horizon)
 
         combined_frame = np.hstack((frame, lensed_frame))
 
